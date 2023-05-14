@@ -107,22 +107,22 @@ return `# ${data.title}  ${licenseBadge}
   - [Questions](#questions)
   
   ## Installation
-  ${answers.installation}
+  ${data.installation}
   
   ## Usage
-  ${answers.usage}
+  ${data.usage}
   
   ## License
-  This application is covered under the ${answers.license} license.
+  This application is covered under the ${data.license} license.
   
   ## Contributing
-  ${answers.contribution}
+  ${data.contribution}
   
   ## Tests
-  ${answers.tests}
+  ${data.tests}
   
   ## Questions
-  For any questions or inquiries, please reach out to me via [GitHub](https://github.com/${answers.github}) or email me at ${answers.email}.
+  For any questions or inquiries, please reach out to me via [GitHub](https://github.com/${data.github}) or email me at ${data.email}.
   `;
 }
 
@@ -137,13 +137,13 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions)
-    .then((answers) => {
-        console.log(answers);
-        writeToFile('README.md', writeREADME(answers));
+    .then((data) => {
+        console.log(data);
+        writeToFile('README.md', writeREADME(data));
     });
 }
 
 // Function call to initialize app
 init(
-    // writeToFile('README.md', writeREADME(answers))
+    // writeToFile('README.md', writeREADME(data))
 );
