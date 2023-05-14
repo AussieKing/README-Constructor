@@ -86,15 +86,20 @@ const questions = [
 //! Create a function to initialize app and write README file
 function writeREADME(data) {
 
-    const licenseType ='';
-    const licenseBadge = '';
+    let licenseType ='';
+    let licenseBadge = '';
 
     fs.writeFile('README.md', generateMarkdown(data), (err) =>
     err ? console.log(err) : console.log('Success!')
     );
 
-return `# ${data.title}  ${licenseBadge}
-
+    if (data.license !== 'None') {
+        licenseType = `![License](https://img.shields.io/badge/license-${encodeURIComponent(data.license)}-blue.svg)`;
+        licenseBadge = `This application is registered under the ${data.license} license.`;
+      }
+    
+      return `# ${data.title}  ${licenseType}
+    
   ## Description
   ${data.description}
   
@@ -122,8 +127,7 @@ return `# ${data.title}  ${licenseBadge}
   ${data.tests}
   
   ## Questions
-  For any questions or inquiries, please reach out to me via [GitHub](https://github.com/${data.github}) or email me at ${data.email}.
-  `;
+  For any questions or inquiries, please reach out to me via [GitHub](https://github.com/${data.github}) or email me at ${data.email}.`;
 }
 
 
@@ -143,7 +147,7 @@ function init() {
     });
 }
 
-// Function call to initialize app
+// Function call to initialize app 
 init(
     // writeToFile('README.md', writeREADME(data))
 );
