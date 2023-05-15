@@ -3,7 +3,7 @@
 // Include packages and modules needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown.js');
+const writeREADME = require('./utils/generateMarkdown.js');
 // const licenseChoice : ['None', 'Apache', 'MIT', 'GPL v3.0', 'BSD', 'Mozilla Public License 2.0'];
 
 // TODO: Create an array of questions for user input
@@ -83,52 +83,53 @@ const questions = [
     },
 ];
 
-//! Create a function to initialize app and write README file
-function writeREADME(data) {
+// Create a function to initialize app
 
-    let licenseType ='';
-    let licenseBadge = '';
+// function writeREADME(data) {
 
-    fs.writeFile('README.md', generateMarkdown(data), (err) =>
-    err ? console.log(err) : console.log('Success!')
-    );
+//     let licenseType ='';
+//     let licenseBadge = '';
 
-    if (data.license !== 'None') {
-        licenseType = `![License](https://img.shields.io/badge/license-${encodeURIComponent(data.license)}-blue.svg)`;
-        licenseBadge = `This application is registered under the ${data.license} license.`;
-      }
+//     fs.writeFile('README.md', generateMarkdown(data), (err) =>
+//     err ? console.log(err) : console.log('Success!')
+//     );
+
+//     if (data.license !== 'None') {
+//         licenseType = `![License](https://img.shields.io/badge/license-${encodeURIComponent(data.license)}-blue.svg)`;
+//         licenseBadge = `This application is registered under the ${data.license} license.`;
+//       }
     
-      return `# ${data.title}  ${licenseType}
+//       return `# ${data.title}  ${licenseType}
     
-  ## Description
-  ${data.description}
+//   ## Description
+//   ${data.description}
   
-  ## Table of Contents
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [License](#license)
-  - [Contributing](#contributing)
-  - [Tests](#tests)
-  - [Questions](#questions)
+//   ## Table of Contents
+//   - [Installation](#installation)
+//   - [Usage](#usage)
+//   - [License](#license)
+//   - [Contributing](#contributing)
+//   - [Tests](#tests)
+//   - [Questions](#questions)
   
-  ## Installation
-  ${data.installation}
+//   ## Installation
+//   ${data.installation}
   
-  ## Usage
-  ${data.usage}
+//   ## Usage
+//   ${data.usage}
   
-  ## License
-  This application is covered under the ${data.license} license.
+//   ## License
+//   This application is covered under the ${data.license} license.
   
-  ## Contributing
-  ${data.contribution}
+//   ## Contributing
+//   ${data.contribution}
   
-  ## Tests
-  ${data.tests}
+//   ## Tests
+//   ${data.tests}
   
-  ## Questions
-  For any questions or inquiries, please reach out to me via [GitHub](https://github.com/${data.github}) or email me at ${data.email}.`;
-}
+//   ## Questions
+//   For any questions or inquiries, please reach out to me via [GitHub](https://github.com/${data.github}) or email me at ${data.email}.`;
+// }
 
 
 // TODO: Create a function to write README file
@@ -138,12 +139,14 @@ function writeToFile(fileName, data) {
     );
 }
 
-// TODO: Create a function to initialize app
+
+// DONE : Create a function to initialize app 
 function init() {
     inquirer.prompt(questions)
-    .then((data) => {
+    .then(function(data) {
         console.log(data);
-        writeToFile('README.md', writeREADME(data));
+        let readme = writeREADME(data);
+        writeToFile('README.md', readme);
     });
 }
 
