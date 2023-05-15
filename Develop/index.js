@@ -1,12 +1,10 @@
-// TODO: Include packages needed for this application
-
-// Include packages and modules needed for this application
+// Packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
 const writeREADME = require('./utils/generateMarkdown.js');
 // const licenseChoice : ['None', 'Apache', 'MIT', 'GPL v3.0', 'BSD', 'Mozilla Public License 2.0'];
 
-// TODO: Create an array of questions for user input
+// Creating an array of questions for user input
 const questions = [
     {
         type: 'input',
@@ -23,7 +21,7 @@ const questions = [
     {
         type: 'input',
         name: 'features',
-        message: "Please provide any features for your project.",
+        message: "Please provide any features your projects contains.",
     },
 
 
@@ -83,56 +81,8 @@ const questions = [
     },
 ];
 
-// Create a function to initialize app
 
-// function writeREADME(data) {
-
-//     let licenseType ='';
-//     let licenseBadge = '';
-
-//     fs.writeFile('README.md', generateMarkdown(data), (err) =>
-//     err ? console.log(err) : console.log('Success!')
-//     );
-
-//     if (data.license !== 'None') {
-//         licenseType = `![License](https://img.shields.io/badge/license-${encodeURIComponent(data.license)}-blue.svg)`;
-//         licenseBadge = `This application is registered under the ${data.license} license.`;
-//       }
-    
-//       return `# ${data.title}  ${licenseType}
-    
-//   ## Description
-//   ${data.description}
-  
-//   ## Table of Contents
-//   - [Installation](#installation)
-//   - [Usage](#usage)
-//   - [License](#license)
-//   - [Contributing](#contributing)
-//   - [Tests](#tests)
-//   - [Questions](#questions)
-  
-//   ## Installation
-//   ${data.installation}
-  
-//   ## Usage
-//   ${data.usage}
-  
-//   ## License
-//   This application is covered under the ${data.license} license.
-  
-//   ## Contributing
-//   ${data.contribution}
-  
-//   ## Tests
-//   ${data.tests}
-  
-//   ## Questions
-//   For any questions or inquiries, please reach out to me via [GitHub](https://github.com/${data.github}) or email me at ${data.email}.`;
-// }
-
-
-// TODO: Create a function to write README file
+// Function to write the README file
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) =>
     err ? console.log(err) : console.log('Success! Your README.md file has been generated!')
@@ -140,7 +90,7 @@ function writeToFile(fileName, data) {
 }
 
 
-// DONE : Create a function to initialize app 
+// Function to init. the app 
 function init() {
     inquirer.prompt(questions)
     .then(function(data) {
@@ -148,9 +98,6 @@ function init() {
         let readme = writeREADME(data);
         writeToFile('README.md', readme);
     });
-}
+};
 
-// Function call to initialize app 
-init(
-    // writeToFile('README.md', writeREADME(data))
-);
+init();
